@@ -13,7 +13,7 @@ class UserFactory extends Factory
      * @return array
      */
 
-    private static int $worker_id = 20001;
+    private static int $worker_id = 10001;
 
 
     public function definition()
@@ -22,6 +22,7 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'worker_id' => self::$worker_id++,
+            'role' => $this->faker->numberBetween(1,2),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ];
     }
