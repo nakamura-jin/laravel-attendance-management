@@ -22,4 +22,7 @@ Route::post('logout', [AuthController::class, 'logout']);
 Route::get('user', [AuthController::class, 'me']);
 
 Route::post('register', [UserController::class, 'register']);
+
 Route::get('holiday', [AttendanceController::class, 'check_holiday']);
+Route::get('attendance', [AttendanceController::class, 'my_attendance']);
+
