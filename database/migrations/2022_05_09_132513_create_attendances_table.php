@@ -15,12 +15,13 @@ class CreateAttendancesTable extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->datetime('year');
-            $table->datetime('month');
-            $table->datetime('days');
-            $table->datetime('start_time');
-            $table->datetime('break_time')->nullable();
-            $table->datetime('end_time')->nullable();
+            $table->integer('year');
+            $table->integer('month');
+            $table->integer('date');
+            $table->time('start_time');
+            $table->time('breake_time')->nullable();
+            $table->time('end_time')->nullable();
+            $table->string('remarks')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
