@@ -22,10 +22,14 @@ class AuthController extends Controller
             return response()->json(['success' => false], 401);
         }
 
+        $user = auth()->user();
+
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
+            'refresh_token' => auth()->refresh(),
+            'user' => $user
         ]);
     }
 
