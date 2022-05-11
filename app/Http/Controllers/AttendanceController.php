@@ -20,12 +20,13 @@ class AttendanceController extends Controller
 
     public function my_attendance(Request $request)
     {
-        $user = auth()->user();
+        $id = $request->id;
         $year = $request->year;
         $month = $request->month;
-        $attendance = Attendance::where('user_id', $user->id)
+        $attendance = Attendance::where('user_id', $id)
                                 ->where('year', $year)
-                                ->where('month', $month)->get();
+                                ->where('month', $month)
+                                ->orderBy('date', 'asc')->get();
         foreach ($attendance as $item) {
             $item->start_time = Carbon::parse($item->start_time)->format('H:i');
             $item->end_time = Carbon::parse($item->end_time)->format('H:i');
