@@ -23,7 +23,8 @@ class CreateAttendancesTable extends Migration
             $table->time('end_time')->nullable();
             $table->string('remarks')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent()->nullable();
+            $table->timestamp('updated_at')->useCurrent()->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });

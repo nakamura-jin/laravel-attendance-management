@@ -29,8 +29,12 @@ class AttendanceController extends Controller
                                 ->orderBy('date', 'asc')->get();
         foreach ($attendance as $item) {
             $item->start_time = Carbon::parse($item->start_time)->format('H:i');
-            $item->end_time = Carbon::parse($item->end_time)->format('H:i');
-            $item->breake_time = Carbon::parse($item->breake_time)->format('H:i');
+            if($item->end_time !== null) {
+                $item->end_time = Carbon::parse($item->end_time)->format('H:i');
+            }
+            if($item->break_time !== null) {
+                $item->breake_time = Carbon::parse($item->breake_time)->format('H:i');
+            }
         }
         return response()->json(['attendance' => $attendance]);
     }
