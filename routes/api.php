@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\WorkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,6 @@ Route::post('register', [UserController::class, 'register']);
 
 Route::get('holiday', [AttendanceController::class, 'check_holiday']);
 Route::get('attendance', [AttendanceController::class, 'my_attendance']);
+
+Route::post('work_start/{id}', [WorkController::class, 'start']);
 
