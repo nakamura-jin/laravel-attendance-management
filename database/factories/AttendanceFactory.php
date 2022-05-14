@@ -15,8 +15,7 @@ class AttendanceFactory extends Factory
     {
         return [
             'year' => 2022,
-            // 'month' => $this->faker->numberBetween(1, 12),
-            'month' => 5,
+            'month' => $this->faker->numberBetween(5, 6),
             'date' => $this->faker->numberBetween(1, 30),
             'start_time' => '9:00',
             'breake_time' => '1:00',

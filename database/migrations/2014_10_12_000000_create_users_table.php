@@ -20,7 +20,8 @@ class CreateUsersTable extends Migration
             $table->integer('worker_id');
             $table->tinyInteger('role');
             $table->string('password');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent()->nullable();
+            $table->timestamp('updated_at')->useCurrent()->nullable();
         });
     }
 
