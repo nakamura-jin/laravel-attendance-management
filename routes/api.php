@@ -29,4 +29,5 @@ Route::get('holiday', [AttendanceController::class, 'check_holiday']);
 Route::get('attendance', [AttendanceController::class, 'my_attendance']);
 
 Route::post('work_start/{id}', [WorkController::class, 'start']);
+Route::put('work/{id}', [WorkController::class, 'edit']);
 

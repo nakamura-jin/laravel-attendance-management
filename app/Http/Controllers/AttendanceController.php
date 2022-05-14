@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Yasumi\Yasumi;
 use App\Models\Attendance;
-use Illuminate\Support\Facades\Auth;
 
 class AttendanceController extends Controller
 {
@@ -32,7 +31,7 @@ class AttendanceController extends Controller
             if($item->end_time !== null) {
                 $item->end_time = Carbon::parse($item->end_time)->format('H:i');
             }
-            if($item->break_time !== null) {
+            if($item->breake_time !== null) {
                 $item->breake_time = Carbon::parse($item->breake_time)->format('H:i');
             }
         }

@@ -10,7 +10,6 @@ class WorkController extends Controller
 {
     public function start(WorkRequest $request)
     {
-
         $input = $request->validated();
 
         $start = [
@@ -28,6 +27,24 @@ class WorkController extends Controller
         }
 
         return response()->json(['message' => 'successfully'], 200);
+    }
+
+    public function edit(Request $request)
+    {
+        $data = [
+            'end_time' => $request->end_time,
+            'breake_time' => $request->breake_time,
+            'remarks' => $request->remarks,
+        ];
+
+        $attendance = Attendance::where('id', $request->id)->update($data);
+
+        if(!$attendance) {
+            return response()->json([$attendance], 404);
+        }
+
+        return response()->json(['message' => 'successfully'], 200);
+
     }
 
 }
