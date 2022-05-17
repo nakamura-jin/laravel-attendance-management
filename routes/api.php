@@ -18,16 +18,29 @@ use App\Http\Controllers\WorkController;
 |
 */
 
+/**
+ * ログイン関連
+ */
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout']);
 Route::get('user', [AuthController::class, 'me']);
 Route::post('logout', [AuthController::class, 'logout']);
 
+/**
+ * ユーザー関連
+ */
 Route::post('register', [UserController::class, 'register']);
+Route::post('work_start/{id}', [UserController::class, 'start']);
+Route::put('work/{id}', [UserController::class, 'edit']);
 
+/**
+ * 月別リスト
+ */
 Route::get('holiday', [AttendanceController::class, 'check_holiday']);
 Route::get('attendance', [AttendanceController::class, 'my_attendance']);
 
-Route::post('work_start/{id}', [WorkController::class, 'start']);
-Route::put('work/{id}', [WorkController::class, 'edit']);
-
+/**
+ * 社員関連
+ */
+Route::get('admin/workers', [WorkController::class, 'index']);
+Route::get('admin/worker_list', [WorkController::class, 'show']);
