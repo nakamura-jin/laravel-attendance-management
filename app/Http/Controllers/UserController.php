@@ -15,7 +15,7 @@ class UserController extends Controller
         $input = $request->validated();
 
         $lastUser = User::orderBy('worker_id', 'desc')->first();
-        
+
         $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
@@ -27,41 +27,34 @@ class UserController extends Controller
         return response()->json(['data' => $user], 201);
     }
 
-    public function start(AttendanceRequest $request)
+    public function show(Request $request)
     {
-        $input = $request->validated();
+        $id = $request->id;
+        $worker = User::where('id', $id)->get();
 
-        $start = [
-            'year' => $input['year'],
-            'month' => $input['month'],
-            'date' => $input['date'],
-            'start_time' => $input['start_time'],
-            'user_id' => $input['user_id']
-        ];
-
-        $attendance = Attendance::create($start);
-
-        if (!$attendance) {
-            return response()->json(['message' => 'error'], 404);
+        if (!$worker) {
+            return response()->json(['message' => 'No such worker'], 404);
         }
 
-        return response()->json(['message' => 'successfully'], 200);
+        return response()->json(['worker' => $worker], 200);
     }
 
-    public function edit(Request $request)
+    public function update(Request $request)
     {
         $data = [
-            'end_time' => $request->end_time,
-            'breake_time' => $request->breake_time,
-            'remarks' => $request->remarks,
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role
         ];
 
-        $attendance = Attendance::where('id', $request->id)->update($data);
+        $user = User::where('id', $request->id)->update($data);
 
-        if (!$attendance) {
-            return response()->json([$attendance], 404);
+        if(!$user) {
+            return response()->json(['message' => 'update error']);
         }
 
-        return response()->json(['message' => 'successfully'], 200);
+        return response()->json(['message' => 'successfully']);
+
     }
+
 }
