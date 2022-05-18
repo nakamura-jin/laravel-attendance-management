@@ -32,6 +32,7 @@ Route::post('logout', [AuthController::class, 'logout']);
 Route::post('register', [UserController::class, 'register']);
 Route::get('admin/worker', [UserController::class, 'show']);
 Route::put('admin/worker/{id}', [UserController::class, 'update']);
+Route::delete('admin/worker/{id}', [UserController::class, 'destroy']);
 
 
 /**
