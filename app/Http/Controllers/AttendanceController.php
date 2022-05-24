@@ -10,6 +10,11 @@ use App\Http\Requests\AttendanceRequest;
 
 class AttendanceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     public function check_holiday()
     {
         $now = now();

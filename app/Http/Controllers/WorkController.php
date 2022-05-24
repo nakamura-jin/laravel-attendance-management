@@ -10,6 +10,12 @@ use Carbon\Carbon;
 
 class WorkController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     public function index()
     {
         $users = User::all();
