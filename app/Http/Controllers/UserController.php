@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Requests\AttendanceRequest;
 use App\Models\Attendance;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -26,7 +27,7 @@ class UserController extends Controller
             'email' => $input['email'],
             'role' => $input['role'],
             'worker_id' => $lastUser['worker_id'] + 1,
-            'password' => $input['password'],
+            'password' => Hash::make($input['password']),
         ]);
 
         return response()->json(['data' => $user], 201);
