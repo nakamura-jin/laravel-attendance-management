@@ -29,7 +29,7 @@ class AuthController extends Controller
             return response()->json(['success' => false], 401);
         }
 
-        $token = auth()->setTTL(1)->attempt($credentials);
+        $token = auth()->setTTL(480)->attempt($credentials);
 
         return $this->respondWithToken($token);
     }
